@@ -1,0 +1,364 @@
+<project name="DistributedCrawler" default="all" basedir=".">
+
+	<target name="init">
+		<mkdir dir="./target/master/WEB-INF/classes" />
+		<mkdir dir="./target/worker/WEB-INF/classes" />
+		<mkdir dir="./target/worker1/WEB-INF/classes" />
+		<mkdir dir="./target/worker2/WEB-INF/classes" />
+		<mkdir dir="./target/worker3/WEB-INF/classes" />
+		<mkdir dir="./target/worker4/WEB-INF/classes" />
+		<mkdir dir="./target/worker5/WEB-INF/classes" />
+		<mkdir dir="./target/worker6/WEB-INF/classes" />
+
+		<mkdir dir="/home/cis455/ec2-target-files/target/master/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker1/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker2/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker3/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker4/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker5/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker6/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker7/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker8/WEB-INF/classes" />
+		<mkdir dir="/home/cis455/ec2-target-files/target/worker9/WEB-INF/classes" />
+
+
+		<mkdir dir="./classes" />
+	</target>
+
+	<path id="compile.path">
+		<fileset dir="lib" />
+	</path>
+
+	<target name="compile-jobs" depends="init">
+		<javac srcdir="src" destdir="classes" includes="**/job/*.java,**/Job.java,**/Context.java" deprecation="on" debug="true" includeantruntime="false" classpath="classes">
+			<compilerarg value="-Xlint" />
+		</javac>
+	</target>
+
+	<target name="compile-master" depends="init">
+		<javac srcdir="src" destdir="target/master/WEB-INF/classes" includes="**/master/*.java" deprecation="on" debug="true" includeantruntime="false" classpathref="compile.path">
+			<compilerarg value="-Xlint" />
+		</javac>
+
+		<copy todir="/home/cis455/ec2-target-files/target/master/WEB-INF/classes">
+			<fileset dir="target/master/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="pack" description="Create an archive for submission">
+		<zip destfile="submit-hw3.zip">
+			<zipfileset dir="." excludes="target/**,**/*.class,submit-hw3.zip,
+				master.war,worker*.war" />
+		</zip>
+	</target>
+
+	<target name="compile-worker" depends="init">
+		<javac srcdir="src" destdir="target/worker/WEB-INF/classes" includes="**/worker/*.java" deprecation="on" debug="true" includeantruntime="false" classpathref="compile.path">
+			<compilerarg value="-Xlint" />
+		</javac>
+		<copy todir="target/worker1/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="target/worker2/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="target/worker3/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="target/worker4/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="target/worker5/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="target/worker6/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+
+
+
+
+
+		<copy todir="/home/cis455/ec2-target-files/target/worker/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<copy todir="/home/cis455/ec2-target-files/target/worker1/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker2/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker3/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker4/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker5/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker6/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker7/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker8/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="/home/cis455/ec2-target-files/target/worker9/WEB-INF/classes">
+			<fileset dir="target/worker/WEB-INF/classes">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+
+
+
+
+	<target name="all" depends="init,war-master,war-worker,war-worker1,
+		war-worker2,war-worker3,war-worker4,war-worker5,war-worker6,war-master-ec2,war-worker-ec2,
+		war-worker1-ec2,war-worker2-ec2,war-worker3-ec2,war-worker4-ec2,war-worker5-ec2,war-worker6-ec2
+		,war-worker7-ec2,war-worker8-ec2,war-worker9-ec2,compile-jobs" />
+
+	<target name="war-master" depends="compile-master">
+		<jar destfile="master.war">
+			<fileset dir="target/master/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/master/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/master/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+	<target name="war-worker" depends="compile-worker">
+		<jar destfile="worker.war">
+			<fileset dir="target/worker/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker1" depends="compile-worker">
+		<jar destfile="worker1.war">
+			<fileset dir="target/worker1/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker1/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker1/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker2" depends="compile-worker">
+		<jar destfile="worker2.war">
+			<fileset dir="target/worker2/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker2/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker2/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker3" depends="compile-worker">
+		<jar destfile="worker3.war">
+			<fileset dir="target/worker3/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker3/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker3/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker4" depends="compile-worker">
+		<jar destfile="worker4.war">
+			<fileset dir="target/worker4/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker4/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker4/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+	<target name="war-worker5" depends="compile-worker">
+		<jar destfile="worker5.war">
+			<fileset dir="target/worker5/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker5/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker5/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+	<target name="war-worker6" depends="compile-worker">
+		<jar destfile="worker6.war">
+			<fileset dir="target/worker6/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="target/worker6/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="target/worker6/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+
+
+
+	<target name="war-master-ec2" depends="compile-master">
+		<jar destfile="/home/cis455/ec2-target-files/master.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/master/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/master/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/master/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+	<target name="war-worker-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker1-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker1.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker1/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker1/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker1/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker2-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker2.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker2/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker2/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker2/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker3-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker3.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker3/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker3/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker3/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker4-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker4.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker4/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker4/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker4/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+	<target name="war-worker5-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker5.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker5/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker5/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker5/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+	<target name="war-worker6-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker6.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker6/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker6/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker6/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker7-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker7.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker7/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker7/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker7/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker8-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker8.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker8/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker8/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker8/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+	<target name="war-worker9-ec2" depends="compile-worker">
+		<jar destfile="/home/cis455/ec2-target-files/worker9.war">
+			<fileset dir="/home/cis455/ec2-target-files/target/worker9/" includes="WEB-INF/classes/**/*.class" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker9/" includes="WEB-INF/lib/*.jar" />
+			<fileset dir="/home/cis455/ec2-target-files/target/worker9/" includes="WEB-INF/*.xml" />
+		</jar>
+	</target>
+
+
+	<target name="clean">
+		<delete dir="target/master/WEB-INF/classes" />
+		<delete dir="target/worker/WEB-INF/classes" />
+		<delete dir="target/worker1/WEB-INF/classes" />
+		<delete dir="target/worker2/WEB-INF/classes" />
+		<delete dir="target/worker3/WEB-INF/classes" />
+		<delete dir="target/worker4/WEB-INF/classes" />
+		<delete dir="target/worker5/WEB-INF/classes" />
+		<delete dir="target/worker6/WEB-INF/classes" />
+
+		<delete file="master.war" />
+		<delete file="worker.war" />
+		<delete file="worker1.war" />
+		<delete file="worker2.war" />
+		<delete file="worker3.war" />
+		<delete file="worker4.war" />
+		<delete file="worker5.war" />
+		<delete file="worker6.war" />
+
+
+
+
+		<delete dir="/home/cis455/ec2-target-files/target/master/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker1/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker2/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker3/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker4/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker5/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker6/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker7/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker8/WEB-INF/classes" />
+		<delete dir="/home/cis455/ec2-target-files/target/worker9/WEB-INF/classes" />
+
+		<delete file="/home/cis455/ec2-target-files/target/master.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker1.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker2.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker3.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker4.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker5.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker6.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker7.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker8.war" />
+		<delete file="/home/cis455/ec2-target-files/target/worker9.war" />
+	</target>
+
+
+	<target name="build" depends="war-master,war-worker,
+		war-worker1,war-worker2,war-worker3,war-worker4,war-worker5,war-worker6,war-master-ec2,war-worker-ec2,
+		war-worker1-ec2,war-worker2-ec2,war-worker3-ec2,war-worker4-ec2,war-worker5-ec2
+		,war-worker6-ec2,war-worker7-ec2,war-worker8-ec2,war-worker9-ec2">
+	</target>
+</project>
